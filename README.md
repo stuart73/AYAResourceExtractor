@@ -17,9 +17,9 @@ The converter was written in C# with Windows forms, however this app also contai
 
 -Zlib from Mark Adler (this is needed as .aya files were compressed with this)
 
--DSSReader from Juho Peltonen (This is needed as the textures were stored as compressed DXT2)
+-DSSReader from Juho Peltonen (This is needed as the textures were stored as compressed DXT2).  Converted textures are store as .png as some contain alpha channel data.
 
--FBX from hamish-milne. (This is uses to read/modify/write) fbx files.
+-FBX from hamish-milne. (This is used to read/modify/write) fbx files.
 
 Currently this extractor tool only extracts models from the .aya files and does not work 100% on every model.
 
