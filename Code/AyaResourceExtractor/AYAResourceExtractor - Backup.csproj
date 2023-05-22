@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Debug\**" />
+    <Compile Remove="x64\**" />
+    <EmbeddedResource Remove="Debug\**" />
+    <EmbeddedResource Remove="x64\**" />
+    <None Remove="Debug\**" />
+    <None Remove="x64\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DDSTextureUncompress\DDSTextureUncompress.vcxproj" />
+    <ProjectReference Include="..\Fbx\Fbx.csproj" />
+    <ProjectReference Include="..\ZLibWrapper\ZLibWrapper.vcxproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if &quot;$(ConfigurationName)&quot; == &quot;Release&quot; &#xD;&#xA;( xcopy &quot;$(SolutionDir)$(TargetName)\bin\$(Configuration)&quot; &quot;..\..\..\&quot; /s /i /y )" />
+  </Target>
+
+</Project>

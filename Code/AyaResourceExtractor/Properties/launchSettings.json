@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AYAResourceExtractor": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
