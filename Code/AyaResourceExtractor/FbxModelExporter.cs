@@ -7,8 +7,14 @@ namespace AYAResourceExtractor
     {
         public void Export(AyaModel model, string outputFolder, string modelFilename, string resourcesPath, bool binaryFbx, bool asciiFbx)
         {
+            string fbxTemplateFilename = @"BoxWithTextures.fbx";
+            if (File.Exists(fbxTemplateFilename) == false)
+            {
+                fbxTemplateFilename = @"..\..\..\..\..\BoxWithTextures.fbx";
+            }
+
             // The fbx library just allows you to read/modify and then save.  So we need a template fbx model to start with.
-            FbxDocument documentNode = FbxIO.ReadBinary(@"BoxWithTextures.fbx");
+            FbxDocument documentNode = FbxIO.ReadBinary(fbxTemplateFilename);
 
             // For help with debug
             //FbxIO.WriteAscii(documentNode, @"..\..\..\..\..\TemplateFBXFiles\BoxWithTextures_accii.fbx");
